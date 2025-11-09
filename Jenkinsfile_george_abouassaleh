@@ -28,6 +28,14 @@ pipeline {
             }
         }
 
+        stage('Coverage') {   
+            steps {
+                bat "call ${VIRTUAL_ENV}\\Scripts\\activate && coverage run -m pytest"
+                bat "call ${VIRTUAL_ENV}\\Scripts\\activate && coverage report -m"
+                bat "call ${VIRTUAL_ENV}\\Scripts\\activate && coverage html"
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo "Deploying application..."
