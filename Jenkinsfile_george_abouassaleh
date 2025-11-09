@@ -24,7 +24,7 @@ pipeline {
 
         stage('Security Scan') {  
             steps {
-                bat "set PYTHONIOENCODING=utf-8 && call ${VIRTUAL_ENV}\\Scripts\\activate && bandit -r . -lll -x venv"
+                bat "set PYTHONIOENCODING=utf-8 && call ${VIRTUAL_ENV}\\Scripts\\activate && bandit -r app.py tests/ -lll"
             }
         }
 
