@@ -22,6 +22,13 @@ pipeline {
             }
         }
 
+         stage('Security Scan') {  
+            steps {
+                bat "call ${VIRTUAL_ENV}\\Scripts\\activate && bandit -r . -lll"
+            }
+        }
+
+
         stage('Test') {
             steps {
                 bat "call ${VIRTUAL_ENV}\\Scripts\\activate && python -m pytest"
@@ -32,7 +39,6 @@ pipeline {
             steps {
                 bat "call ${VIRTUAL_ENV}\\Scripts\\activate && coverage run -m pytest"
                 bat "call ${VIRTUAL_ENV}\\Scripts\\activate && coverage report -m"
-                bat "call ${VIRTUAL_ENV}\\Scripts\\activate && coverage html"
             }
         }
 
