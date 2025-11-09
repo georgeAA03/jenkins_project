@@ -44,14 +44,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo "Deploying application locally..."
-                // Create a deployment folder if it doesn't exist
+                echo "Deploying Flask application locally..."
                 bat "if not exist deploy mkdir deploy"
-                // Copy the app.py and requirements.txt to the deployment folder
-                bat "copy app.py deploy\\"
                 bat "copy requirements.txt deploy\\"
+                bat "start cmd /k call ${VIRTUAL_ENV}\\Scripts\\activate && python deploy\\app.py"
             }
         }
+
 
     }
 

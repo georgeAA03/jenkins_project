@@ -1,7 +1,12 @@
+# app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/<name>')
 def greet(name):
 
     return f"Hello, {name}!"
 
-
 if __name__ == "__main__":
-    print(greet("World"))
+    app.run(host='0.0.0.0', port=5000)  # runs on localhost:5000
